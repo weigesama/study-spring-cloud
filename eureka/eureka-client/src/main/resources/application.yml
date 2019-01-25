@@ -1,0 +1,16 @@
+# 为何访问 http://yuanwl:8080/actuator/info 报404？？这是因为没有配置健康检查，后面会讲
+info:
+  name: eureka-client
+  contact: Yuanwl
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: eureka-client
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/

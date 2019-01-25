@@ -1,0 +1,28 @@
+# 强烈微服务定义 info，当微服务数量很多时，方便管理
+info:
+  name: eureka-server
+  contact: Yuanwl
+
+#server:
+#  port: 8761 # eureka-server 默认端口
+
+spring:
+  application:
+    name: eureka-server # 这里配置微服务应用名称，将会显示在 eureka 监控系统首页的“Instances currently registered with Eureka”一栏
+    # 实例ID = IP:微服务应用名称:端口。一个微服务可以部署多个实例，实例ID列表会显示在微服务名称后面
+
+eureka:
+  server:
+    # 是否启用服务中心的自我保护机制，建议开发、测试环境设置为false，生产环境为true，理由：https://blog.csdn.net/wudiyong22/article/details/80827594
+    enable-self-preservation: false
+  client: # 客户端配置——把自己（注册中心服务端）也注册到中心
+    service-url: # 注意url地址不是配置在这，这是map类型的属性！
+      # 把当前微服务应用注册到这个（些）默认空间的注册中心去。可配置、启动多个，让 eureka-server 之间互相注册，组成高可用集群
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/ # 逗号前后不能有空格！有没有更简洁的配置方法？？
+    # 是否注册到 eureka-server。测试发现 Finchley.RELEASE 版本，不配置这个值 eureka-server 也会自动注册到中心
+    register-with-eureka: true
+    fetchRegistry: false # 是否拉取注册信息
+  instance:
+    # hostname: my-client # 自定义 eureka-client 的主机名，不一定会用到
+    metadata-map: #？？
+      instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
