@@ -12,6 +12,6 @@ public class ServerController {
 
     @GetMapping("/product/msg")
     public String msg() {
-        return "this is product's msg";
+        return "this is product0's msg";
     }
 }

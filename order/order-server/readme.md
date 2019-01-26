@@ -21,4 +21,31 @@ eureka 是客户端发现，其负载均衡是软负载，是由 ribbon 客户�
 1. ServerListFilter：过滤掉一部分地址；
 1. IRule：选择一个合适的实例；
 
-###
+### ribbon 的主要源码解读
+
+1. org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient.choose
+1. org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient.getServer(java.lang.String)
+1. org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient.getLoadBalancer
+1. com.netflix.loadbalancer.BaseLoadBalancer.getAllServers
+1. com.netflix.loadbalancer.BaseLoadBalancer.chooseServer：
+    ```java
+    public Server chooseServer(Object key) {
+        if (this.counter == null) {
+            this.counter = this.createCounter();
+        }
+
+        this.counter.increment();
+        if (this.rule == null) {
+            return null;
+        } else {
+            try {
+                return this.rule.choose(key); //这里的rule，默认是RoundRobinRule，也就是轮询负载均衡规则
+            } catch (Exception var3) {
+                logger.warn("LoadBalancer [{}]:  Error choosing server for key {}", new Object[]{this.name, key, var3});
+                return null;
+            }
+        }
+    }
+    ```
+
+我们可以在 application.yml 设置用哪种负载均衡规则（一般不用设置）。

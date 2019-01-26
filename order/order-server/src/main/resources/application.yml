@@ -14,5 +14,10 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-server:
-  port: 8101
+#server:
+#  port: 8101
+
+# 手动指定 ribbon 采用随机负载均衡规则
+product: # 作用于哪个服务，不区分大小写
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
