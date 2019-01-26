@@ -35,7 +35,7 @@ public class ClientController {
 //		String url = String.format("http://%s:%s/product/msg", serviceInstance.getHost(), serviceInstance.getPort());
 //		ret = new RestTemplate().getForObject(url, String.class);
 
-		//方式3：利用@LoadBalanced，可以在restTemplate里直接使用服务名——有负载均衡，而且比较简洁
+		//方式3：利用@LoadBalanced，可以在restTemplate里直接使用服务名——其实是方式2的简化，比较简洁
 		ret = restTemplate.getForObject("http://product/product/msg", String.class);
 
 		return ret;
