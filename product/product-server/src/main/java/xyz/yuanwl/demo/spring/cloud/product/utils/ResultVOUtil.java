@@ -1,8 +1,9 @@
 package xyz.yuanwl.demo.spring.cloud.product.utils;
 
-import xyz.yuanwl.demo.spring.cloud.product.VO.ResultVO;
+import xyz.yuanwl.demo.spring.cloud.product.vo.ResultVO;
 
 /**
+ * TODO
  * Created by 廖师兄
  * 2017-12-09 22:53
  */

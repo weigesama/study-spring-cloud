@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.order.repository;
 
-import xyz.yuanwl.demo.spring.cloud.order.dataobject.OrderDetail;
+import xyz.yuanwl.demo.spring.cloud.order.entity.OrderDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

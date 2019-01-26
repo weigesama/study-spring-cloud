@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.order.repository;
 
-import xyz.yuanwl.demo.spring.cloud.order.dataobject.OrderMaster;
+import xyz.yuanwl.demo.spring.cloud.order.entity.OrderMaster;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

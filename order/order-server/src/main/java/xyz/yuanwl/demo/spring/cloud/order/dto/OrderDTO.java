@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.order.dto;
 
-import xyz.yuanwl.demo.spring.cloud.order.dataobject.OrderDetail;
+import xyz.yuanwl.demo.spring.cloud.order.entity.OrderDetail;
 import lombok.Data;
 
 import java.math.BigDecimal;

@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.product.repository;
 
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductInfo;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

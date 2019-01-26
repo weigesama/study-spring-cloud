@@ -2,13 +2,12 @@ package xyz.yuanwl.demo.spring.cloud.product.service.impl;
 
 import xyz.yuanwl.demo.spring.cloud.product.common.DecreaseStockInput;
 import xyz.yuanwl.demo.spring.cloud.product.common.ProductInfoOutput;
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductInfo;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductInfo;
 import xyz.yuanwl.demo.spring.cloud.product.enums.ProductStatusEnum;
 import xyz.yuanwl.demo.spring.cloud.product.enums.ResultEnum;
 import xyz.yuanwl.demo.spring.cloud.product.exception.ProductException;
 import xyz.yuanwl.demo.spring.cloud.product.repository.ProductInfoRepository;
 import xyz.yuanwl.demo.spring.cloud.product.service.ProductService;
-import xyz.yuanwl.demo.spring.cloud.product.utils.JsonUtil;
 //import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

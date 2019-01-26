@@ -1,4 +1,4 @@
-package xyz.yuanwl.demo.spring.cloud.product.dataobject;
+package xyz.yuanwl.demo.spring.cloud.product.entity;
 
 import lombok.Data;
 

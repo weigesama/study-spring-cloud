@@ -1,4 +1,4 @@
-package xyz.yuanwl.demo.spring.cloud.order.VO;
+package xyz.yuanwl.demo.spring.cloud.order.vo;
 
 import lombok.Data;
 

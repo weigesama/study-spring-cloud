@@ -1,7 +1,7 @@
 package xyz.yuanwl.demo.spring.cloud.order.repository;
 
 import xyz.yuanwl.demo.spring.cloud.order.OrderAppTests;
-import xyz.yuanwl.demo.spring.cloud.order.dataobject.OrderMaster;
+import xyz.yuanwl.demo.spring.cloud.order.entity.OrderMaster;
 import xyz.yuanwl.demo.spring.cloud.order.enums.OrderStatusEnum;
 import xyz.yuanwl.demo.spring.cloud.order.enums.PayStatusEnum;
 import org.junit.Assert;

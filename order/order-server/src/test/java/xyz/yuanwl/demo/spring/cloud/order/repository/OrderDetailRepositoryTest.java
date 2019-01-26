@@ -1,7 +1,7 @@
 package xyz.yuanwl.demo.spring.cloud.order.repository;
 
 import xyz.yuanwl.demo.spring.cloud.order.OrderAppTests;
-import xyz.yuanwl.demo.spring.cloud.order.dataobject.OrderDetail;
+import xyz.yuanwl.demo.spring.cloud.order.entity.OrderDetail;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

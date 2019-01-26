@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.order.utils;
 
-import xyz.yuanwl.demo.spring.cloud.order.VO.ResultVO;
+import xyz.yuanwl.demo.spring.cloud.order.vo.ResultVO;
 
 /**
  * Created by 廖师兄

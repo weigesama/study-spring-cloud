@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.product.service.impl;
 
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductCategory;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductCategory;
 import xyz.yuanwl.demo.spring.cloud.product.repository.ProductCategoryRepository;
 import xyz.yuanwl.demo.spring.cloud.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

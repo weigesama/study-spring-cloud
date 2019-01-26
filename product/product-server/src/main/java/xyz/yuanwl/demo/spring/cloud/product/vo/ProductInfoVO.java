@@ -1,4 +1,4 @@
-package xyz.yuanwl.demo.spring.cloud.product.VO;
+package xyz.yuanwl.demo.spring.cloud.product.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

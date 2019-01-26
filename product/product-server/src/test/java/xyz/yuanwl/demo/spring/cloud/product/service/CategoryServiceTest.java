@@ -1,7 +1,7 @@
 package xyz.yuanwl.demo.spring.cloud.product.service;
 
 import xyz.yuanwl.demo.spring.cloud.product.ProductAppTests;
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductCategory;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductCategory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

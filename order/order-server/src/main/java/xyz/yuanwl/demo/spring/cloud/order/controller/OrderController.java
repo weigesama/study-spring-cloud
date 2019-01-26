@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.order.controller;
 
-import xyz.yuanwl.demo.spring.cloud.order.VO.ResultVO;
+import xyz.yuanwl.demo.spring.cloud.order.vo.ResultVO;
 import xyz.yuanwl.demo.spring.cloud.order.converter.OrderForm2OrderDTOConverter;
 import xyz.yuanwl.demo.spring.cloud.order.dto.OrderDTO;
 import xyz.yuanwl.demo.spring.cloud.order.enums.ResultEnum;
@@ -67,9 +67,9 @@ public class OrderController {
      * @param orderId
      * @return
      */
-    @PostMapping("/finish")
-    public ResultVO<OrderDTO> finish(@RequestParam("orderId") String orderId) {
-        return ResultVOUtil.success(orderService.finish(orderId));
-    }
+//    @PostMapping("/finish")
+//    public ResultVO<OrderDTO> finish(@RequestParam("orderId") String orderId) {
+//        return ResultVOUtil.success(orderService.finish(orderId));
+//    }
 
 }

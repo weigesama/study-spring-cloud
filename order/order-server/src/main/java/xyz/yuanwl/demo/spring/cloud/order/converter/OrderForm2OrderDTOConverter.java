@@ -2,7 +2,7 @@ package xyz.yuanwl.demo.spring.cloud.order.converter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import xyz.yuanwl.demo.spring.cloud.order.dataobject.OrderDetail;
+import xyz.yuanwl.demo.spring.cloud.order.entity.OrderDetail;
 import xyz.yuanwl.demo.spring.cloud.order.dto.OrderDTO;
 import xyz.yuanwl.demo.spring.cloud.order.enums.ResultEnum;
 import xyz.yuanwl.demo.spring.cloud.order.exception.OrderException;

@@ -2,7 +2,7 @@ package xyz.yuanwl.demo.spring.cloud.product.service;
 
 import xyz.yuanwl.demo.spring.cloud.product.common.DecreaseStockInput;
 import xyz.yuanwl.demo.spring.cloud.product.common.ProductInfoOutput;
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductInfo;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductInfo;
 
 import java.util.List;
 

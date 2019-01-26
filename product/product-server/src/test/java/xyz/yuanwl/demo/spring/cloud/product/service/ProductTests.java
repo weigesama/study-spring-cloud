@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import xyz.yuanwl.demo.spring.cloud.product.ProductAppTests;
 import xyz.yuanwl.demo.spring.cloud.product.common.DecreaseStockInput;
 import xyz.yuanwl.demo.spring.cloud.product.common.ProductInfoOutput;
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductInfo;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductInfo;
 
 import java.util.Arrays;
 import java.util.List;

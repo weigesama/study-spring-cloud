@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.product.repository;
 
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductInfo;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

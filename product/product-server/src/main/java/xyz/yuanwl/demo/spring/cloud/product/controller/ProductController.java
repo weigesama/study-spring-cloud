@@ -1,12 +1,12 @@
 package xyz.yuanwl.demo.spring.cloud.product.controller;
 
-import xyz.yuanwl.demo.spring.cloud.product.VO.ProductInfoVO;
-import xyz.yuanwl.demo.spring.cloud.product.VO.ProductVO;
-import xyz.yuanwl.demo.spring.cloud.product.VO.ResultVO;
+import xyz.yuanwl.demo.spring.cloud.product.vo.ProductInfoVO;
+import xyz.yuanwl.demo.spring.cloud.product.vo.ProductVO;
+import xyz.yuanwl.demo.spring.cloud.product.vo.ResultVO;
 import xyz.yuanwl.demo.spring.cloud.product.common.DecreaseStockInput;
 import xyz.yuanwl.demo.spring.cloud.product.common.ProductInfoOutput;
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductCategory;
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductInfo;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductCategory;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductInfo;
 import xyz.yuanwl.demo.spring.cloud.product.service.CategoryService;
 import xyz.yuanwl.demo.spring.cloud.product.service.ProductService;
 import xyz.yuanwl.demo.spring.cloud.product.utils.ResultVOUtil;

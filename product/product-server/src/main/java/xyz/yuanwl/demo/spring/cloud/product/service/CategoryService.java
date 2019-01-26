@@ -1,6 +1,6 @@
 package xyz.yuanwl.demo.spring.cloud.product.service;
 
-import xyz.yuanwl.demo.spring.cloud.product.dataobject.ProductCategory;
+import xyz.yuanwl.demo.spring.cloud.product.entity.ProductCategory;
 
 import java.util.List;
 
