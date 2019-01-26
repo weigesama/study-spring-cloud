@@ -81,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
 		OrderMaster orderMaster = new OrderMaster();
 		orderDTO.setOrderId(orderId);
 		BeanUtils.copyProperties(orderDTO, orderMaster); //源对象的null属性值也会复制给目标对象，所以要放在设置id后面执行
-//        orderMaster.setOrderAmount(orderAmout);
+        orderMaster.setOrderAmount(BigDecimal.ZERO); //orderAmout
 		orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
 		orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
 		orderMasterRepository.save(orderMaster);

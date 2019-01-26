@@ -43,6 +43,7 @@ public class OrderController {
     @PostMapping("/create")
     public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm,
                            BindingResult bindingResult) {
+        //TODO 用 @ControllerAdvice 来改进
         if (bindingResult.hasErrors()){
             log.error("【创建订单】参数不正确, orderForm={}", orderForm);
             throw new OrderException(ResultEnum.PARAM_ERROR.getCode(),

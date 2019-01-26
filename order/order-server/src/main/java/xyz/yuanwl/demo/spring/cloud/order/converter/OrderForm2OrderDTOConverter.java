@@ -20,7 +20,6 @@ import java.util.List;
 public class OrderForm2OrderDTOConverter {
 
     public static OrderDTO convert(OrderForm orderForm) {
-        Gson gson = new Gson();
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setBuyerName(orderForm.getName());
         orderDTO.setBuyerPhone(orderForm.getPhone());
@@ -28,6 +27,7 @@ public class OrderForm2OrderDTOConverter {
         orderDTO.setBuyerOpenid(orderForm.getOpenid());
 
         List<OrderDetail> orderDetailList = new ArrayList<>();
+        Gson gson = new Gson();
         try {
             orderDetailList = gson.fromJson(orderForm.getItems(),
                     new TypeToken<List<OrderDetail>>() {
