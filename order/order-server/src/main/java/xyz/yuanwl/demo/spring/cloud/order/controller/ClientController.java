@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import xyz.yuanwl.demo.spring.cloud.order.client.ProductClient;
+import xyz.yuanwl.demo.spring.cloud.product.common.ProductInfoOutput;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>测试 RestTemplate 调用微服务的三种方式
@@ -47,7 +51,11 @@ public class ClientController {
 
 	@GetMapping("orderGetProductMsgByFeign")
 	public String orderGetProductMsgByFeign(){
-		String ret = productClient.productMsg();
-		return ret;
+		return productClient.productMsg();
+	}
+
+	@GetMapping("orderListForOrderByFeign")
+	public List<ProductInfoOutput> orderListForOrderByFeign(){
+		return productClient.listForOrder(Arrays.asList("157875196366160022"));
 	}
 }
