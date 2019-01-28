@@ -7,6 +7,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import xyz.yuanwl.demo.spring.cloud.order.client.ProductClient;
 
 /**
  * <p>测试 RestTemplate 调用微服务的三种方式
@@ -38,6 +39,15 @@ public class ClientController {
 		//方式3：利用@LoadBalanced，可以在restTemplate里直接使用服务名——其实是方式2的简化，比较简洁
 //		ret = restTemplate.getForObject("http://product/product/msg", String.class);
 
+		return ret;
+	}
+
+	@Autowired
+	private ProductClient productClient;
+
+	@GetMapping("orderGetProductMsgByFeign")
+	public String orderGetProductMsgByFeign(){
+		String ret = productClient.productMsg();
 		return ret;
 	}
 }

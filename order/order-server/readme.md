@@ -49,3 +49,24 @@ eureka 是客户端发现，其负载均衡是软负载，是由 ribbon 客户�
     ```
 
 我们可以在 application.yml 设置用哪种负载均衡规则（一般不用设置）。
+
+
+## feign 的使用
+
+注意：以下代码是在调用端，即 feign 客户端写的，在本项目就是 order：
+
+1. 引入主要依赖：
+```
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-feign</artifactId>
+</dependency>
+```
+2. 启动类上加注解：@EnableFeignClients //启用feign客户端，扫描标记了 @FeignClient 注解的类；
+3. 编写调用微服务接口的客户端类：xyz.yuanwl.demo.spring.cloud.order.client.ProductClient；
+4. 调用 ProductClient：xyz.yuanwl.demo.spring.cloud.order.controller.ClientController.orderGetProductMsgByFeign；
+
+综上所述，不难发现：
+
+- feign 是声明式 rest 客户端（伪 rpc，但本质上还是http）；
+- feign 采用了基于接口的注解；
