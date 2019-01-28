@@ -1,26 +1,25 @@
 package xyz.yuanwl.demo.spring.cloud.order.service.impl;
 
-import xyz.yuanwl.demo.spring.cloud.order.client.ProductClient;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import xyz.yuanwl.demo.spring.cloud.order.dto.OrderDTO;
 import xyz.yuanwl.demo.spring.cloud.order.entity.OrderDetail;
 import xyz.yuanwl.demo.spring.cloud.order.entity.OrderMaster;
-import xyz.yuanwl.demo.spring.cloud.order.dto.OrderDTO;
 import xyz.yuanwl.demo.spring.cloud.order.enums.OrderStatusEnum;
 import xyz.yuanwl.demo.spring.cloud.order.enums.PayStatusEnum;
 import xyz.yuanwl.demo.spring.cloud.order.repository.OrderDetailRepository;
 import xyz.yuanwl.demo.spring.cloud.order.repository.OrderMasterRepository;
 import xyz.yuanwl.demo.spring.cloud.order.service.OrderService;
 import xyz.yuanwl.demo.spring.cloud.order.utils.KeyUtil;
+import xyz.yuanwl.demo.spring.cloud.product.client.ProductClient;
 import xyz.yuanwl.demo.spring.cloud.product.common.DecreaseStockInput;
 import xyz.yuanwl.demo.spring.cloud.product.common.ProductInfoOutput;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -37,7 +36,8 @@ public class OrderServiceImpl implements OrderService {
 	private OrderMasterRepository orderMasterRepository;
 
     @Autowired
-    private ProductClient productClient; //可以在service层注入feign客户端对象使用！
+    private ProductClient productClient; /*可以在service层注入feign客户端对象使用！
+        注意：改造后这里引用的是product项目的ProductClient！要在启动类注明扫描包*/
 
 	@Override
 	@Transactional

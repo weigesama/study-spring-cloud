@@ -73,3 +73,10 @@ feign 也是基于 ribbon 的客户端负载均衡机制，和 RestTemplate 相�
 - feign 是声明式 rest 客户端（伪 rpc，但本质上还是http）；
 - feign 采用了基于接口的注解；
 
+## 项目改成多模块
+
+1. order-common：公共的对象；
+2. order-server：所有业务逻辑；
+3. order-client：对外暴露的接口；
+
+1被2、3依赖。
