@@ -18,6 +18,6 @@ eureka:
 #  port: 8101
 
 # 手动指定 ribbon 采用随机负载均衡规则
-product: # 作用于哪个服务，不区分大小写
+product: # 指定作用于的服务名，不区分大小写
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
