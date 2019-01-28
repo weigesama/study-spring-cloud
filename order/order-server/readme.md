@@ -62,7 +62,7 @@ eureka 是客户端发现，其负载均衡是软负载，是由 ribbon 客户�
     <artifactId>spring-cloud-starter-feign</artifactId>
 </dependency>
 ```
-2. 启动类上加注解：@EnableFeignClients //启用feign客户端，扫描标记了 @FeignClient 注解的类；
+2. 启动类 xyz.yuanwl.demo.spring.cloud.order.OrderApp 上加注解：@EnableFeignClients //启用feign客户端，扫描标记了 @FeignClient 注解的类；
 3. 编写调用微服务接口的客户端类：xyz.yuanwl.demo.spring.cloud.order.client.ProductClient；
 4. 调用 ProductClient：xyz.yuanwl.demo.spring.cloud.order.controller.ClientController.orderGetProductMsgByFeign；
 
