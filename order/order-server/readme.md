@@ -53,6 +53,8 @@ eureka 是客户端发现，其负载均衡是软负载，是由 ribbon 客户�
 
 ## feign 的使用
 
+feign 也是基于 ribbon 的客户端负载均衡机制，和 RestTemplate 相比，形式上更像 rpc 调用。
+
 注意：以下代码是在调用端，即 feign 客户端写的，在本项目就是 order：
 
 1. 引入主要依赖：
@@ -70,3 +72,4 @@ eureka 是客户端发现，其负载均衡是软负载，是由 ribbon 客户�
 
 - feign 是声明式 rest 客户端（伪 rpc，但本质上还是http）；
 - feign 采用了基于接口的注解；
+
