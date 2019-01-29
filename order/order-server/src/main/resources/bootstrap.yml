@@ -1,0 +1,17 @@
+# 这个配置文件在上下文初始化前加载，我们在这里面配置 eureka、配置中心等，其他配置都移到远程git项目
+
+spring:
+  application:
+    name: order
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config # 配置中心客户端通过这个微服务，加上下面的环境参数 dev，拿到属于自己项目的配置文件
+      profile: dev
+
+# 配置中心客户端要通过 eureka 找到 config 微服务，所以 eureka 也要放到本配置文件
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

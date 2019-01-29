@@ -56,6 +56,8 @@
         <module>eureka</module>
         <module>product</module>
         <module>order</module>
+        <module>config</module>
+        <module>config</module>
     </modules>
 
 </project>
