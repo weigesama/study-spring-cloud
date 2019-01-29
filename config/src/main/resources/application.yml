@@ -6,9 +6,9 @@ spring:
       server:
         git:
           # 把所有要统一配置的配置文件都放到这个远程git仓库里
-          uri: https://gitee.com/weigesama/study-spring-cloud-config-server.git
-          username: weigesama
-          password: wsmmy.9693
+          uri: http://192.168.0.145:8000/yuanwl/study-spring-cloud-config-server.git
+          username: yuanwl
+          password: dodou617
           # 如果不配置这个，config 会把git的配置文件拉到本地一个随机文件夹里
           # 这里一定要小心谨慎，别把文件夹指向项目，否则 config 会把项目文件夹都删掉！
           basedir: d:/config/

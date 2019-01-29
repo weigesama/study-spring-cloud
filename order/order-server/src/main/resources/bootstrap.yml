@@ -7,7 +7,7 @@ spring:
     config:
       discovery:
         enabled: true
-        service-id: config # 配置中心客户端通过这个微服务，加上下面的环境参数 dev，拿到属于自己项目的配置文件
+        service-id: config # 配置中心客户端通过这个微服务（不区分大小写），加上下面的环境参数 dev，拿到属于自己项目的配置文件
       profile: dev
 
 # 配置中心客户端要通过 eureka 找到 config 微服务，所以 eureka 也要放到本配置文件
