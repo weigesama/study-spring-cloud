@@ -22,7 +22,7 @@ eureka:
     # 是否注册到 eureka-server。测试发现 Finchley.RELEASE 版本，不配置这个值 eureka-server 也会自动注册到中心
     register-with-eureka: true
     fetchRegistry: false # 是否拉取注册信息
-  instance:
+#  instance:
     # hostname: my-client # 自定义 eureka-client 的主机名，不一定会用到
-    metadata-map: #？？
-      instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+#    metadata-map: #？？
+#      instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
