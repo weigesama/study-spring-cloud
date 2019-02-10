@@ -1,6 +1,4 @@
 #spring:
-#  application:
-#    name: product
 #  datasource:
 #    driver-class-name: com.mysql.jdbc.Driver
 #    url: jdbc:mysql://localhost/springcloud_sell?characterEncoding=UTF-8&useSSL=false
@@ -8,11 +6,3 @@
 #    password: 111111
 #  jpa:
 #    show-sql: true
-#
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka/
-
-#server:
-#  port: 8100

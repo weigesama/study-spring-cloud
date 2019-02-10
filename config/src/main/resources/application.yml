@@ -5,15 +5,22 @@ spring:
     config:
       server:
         git:
-          # 把所有要统一配置的配置文件都放到这个远程git仓库里
-          uri: http://192.168.0.145:8000/yuanwl/study-spring-cloud-config-server.git
-          username: yuanwl
-          password: dodou617
+          # 把所有要统一配置的配置文件都放到这个远程git仓库里。如果这是公有项目，下面的用户名密码可以不配置
+          uri: https://gitee.com/weigesama/study-spring-cloud-config-server.git
+#          username: weigesama
+#          password: xxx
           # 如果不配置这个，config 会把git的配置文件拉到本地一个随机文件夹里
           # 这里一定要小心谨慎，别把文件夹指向项目，否则 config 会把项目文件夹都删掉！
-          basedir: d:/config/
+#          basedir: d:/config/
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+# 把所有端点都暴露出来，包括 /actuator/bus-refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

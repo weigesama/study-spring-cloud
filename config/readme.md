@@ -54,6 +54,12 @@
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-config-client</artifactId>
 </dependency>
+
+<!--配置中心也是一个微服务，需注册到注册中心给其他人调用-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
 ```
 
 1. 启动类无需加配置中心相关的注解；
@@ -65,3 +71,48 @@
 1. 先启动 eureka-server，再启动 config，最后再启动客户端项目即可；
 
 **注意：git 项目里的配置文件名必须与微服务名对应，否则会找不到配置文件报错！另外，每次改动配置，都要重启 config，客户端才能生效——不重启就让配置生效在下节讲。**
+
+
+# 结合 webhooks 实现配置实时生效
+
+使用 spring-cloud-bus + git 的 webhooks 实现这个效果，流程：
+
+![6-4-spring-cloud-bus.png](attachments/6-4-spring-cloud-bus.png)
+
+## 配置中心
+
+1. 引入主要依赖：
+    ```xml
+    <!--spring-cloud消息总线-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+    </dependency>
+
+    <!--用来监视git的webhooks的请求，除非后续一系列的配置更新-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-config-monitor</artifactId>
+    </dependency>
+    ```
+
+1. 在本项目 application.yml 加上：
+    ```yml
+    # 把所有端点都暴露出来，包括 /actuator/bus-refresh
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "*"
+    ```
+
+1. 去上文的git项目里，配置 webhooks，利用外网映射到本项目的 /monitor 接口，比如我配置的是：http://3d934r.natappfree.cc/monitor；
+
+1. 在配置中心客户端项目需要自动刷新的属性累上面加上 @RefreshScope 注解——就是那些有用到 @Value、@@ConfigurationProperties 的类；
+
+1. 启动项目，修改git项目的配置文件，看看配置有没有自动刷新；
+
+**注意：过程中碰到以下两个问题**
+
+1. 手动发送 post 请求到 /actuator/bus-refresh 可以刷新配置，在 webhooks 上配置这个请求就报错：用下面的方法（https://blog.csdn.net/m0_37556444/article/details/82812816``）；
+1. 默认情况下没有 /monitor 接口，访问报404：要在pom里加入依赖 spring-cloud-config-monitor ——虽然没报错了，但是客户端没有自动刷新配置？？
