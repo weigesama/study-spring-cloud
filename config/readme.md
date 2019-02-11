@@ -79,9 +79,7 @@
 
 ![6-4-spring-cloud-bus.png](attachments/6-4-spring-cloud-bus.png)
 
-## 配置中心
-
-1. 引入主要依赖：
+1. 在本项目主要依赖：
     ```xml
     <!--spring-cloud消息总线-->
     <dependency>
@@ -98,7 +96,7 @@
 
 1. 在本项目 application.yml 加上：
     ```yml
-    # 把所有端点都暴露出来，包括 /actuator/bus-refresh
+    # 把所有端点都暴露出来，包括 /actuator/bus-refresh，不包括 /monitor，可以不配置
     management:
       endpoints:
         web:
@@ -108,11 +106,11 @@
 
 1. 去上文的git项目里，配置 webhooks，利用外网映射到本项目的 /monitor 接口，比如我配置的是：http://3d934r.natappfree.cc/monitor；
 
-1. 在配置中心客户端项目需要自动刷新的属性累上面加上 @RefreshScope 注解——就是那些有用到 @Value、@@ConfigurationProperties 的类；
+1. 在配置中心客户端项目需要自动刷新的属性类上面加上 @RefreshScope 注解——就是那些有用到 @Value、@@ConfigurationProperties 的类；
 
 1. 启动项目，修改git项目的配置文件，看看配置有没有自动刷新；
 
 **注意：过程中碰到以下两个问题**
 
-1. 手动发送 post 请求到 /actuator/bus-refresh 可以刷新配置，在 webhooks 上配置这个请求就报错：用下面的方法（https://blog.csdn.net/m0_37556444/article/details/82812816``）；
-1. 默认情况下没有 /monitor 接口，访问报404：要在pom里加入依赖 spring-cloud-config-monitor ——虽然没报错了，但是客户端没有自动刷新配置？？
+1. 手动发送 post 请求到 /actuator/bus-refresh 可以刷新配置，在 webhooks 上配置这个请求就报错：用下面的接口（https://blog.csdn.net/m0_37556444/article/details/82812816）；
+1. 默认情况下没有 /monitor 接口，访问报404：要在pom里加入依赖 spring-cloud-config-monitor ——虽然没报错了，但是客户端没有自动刷新配置—— Finchley.RELEASE 版本在GitHub里测试报错，在码云上面正常；
