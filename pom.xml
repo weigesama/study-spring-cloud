@@ -57,6 +57,7 @@
         <module>product</module>
         <module>order</module>
         <module>config</module>
+        <module>stream</module>
     </modules>
 
 </project>

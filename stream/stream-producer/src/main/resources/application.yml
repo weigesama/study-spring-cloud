@@ -1,0 +1,24 @@
+# 我们这里使用的是 rabbitMQ 默认的用户 guest/guest，所以不用配置，但是要保证 mq 里有这个用户，否则要创建
+
+spring:
+  application:
+    name: stream-producer
+  cloud:
+    stream:
+      # 这个配置把微服务绑定到 mq
+      bindings:
+        # 消息通道名称，注意接收消息通道和发送消息通道名不可以重复
+        output:
+#        myOutput:
+          # 对于 RabbitMQ，destination 对应的是 exchange，kafka 对应的是 topic
+          destination: stream-demo
+          # 消息以 json 形式传输，方便在 mq 监控页面看到直观的对象数据
+          content-type: application/json
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8400

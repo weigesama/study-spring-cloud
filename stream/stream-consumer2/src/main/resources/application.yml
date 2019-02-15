@@ -1,0 +1,21 @@
+# 我们这里使用的是 rabbitMQ 默认的用户 guest/guest，所以不用配置，但是要保证 mq 里有这个用户，否则要创建
+
+spring:
+  application:
+    name: stream-consumer2
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: stream-demo-trans
+#          group: stream-group
+          content-type: application/json
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+server:
+  port: 8402

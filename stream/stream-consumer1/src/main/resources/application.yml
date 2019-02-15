@@ -1,0 +1,28 @@
+# 我们这里使用的是 rabbitMQ 默认的用户 guest/guest，所以不用配置，但是要保证 mq 里有这个用户，否则要创建
+
+spring:
+  application:
+    name: stream-consumer1
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: stream-demo # 接收消息来源
+          # 对于 RabbitMQ，group 对应的是 queue，kafka 对应的是 消费group
+          # 对于一个应用集群，如果不需要重复消费消息，必须定义group，否则不必定义（比如刷新配置消息）
+#          group: stream-group
+          content-type: application/json
+          consumer:
+            acknowledge-mode: manual
+        output:
+          destination: stream-demo-trans # 中转消息目的地
+          content-type: application/json
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+server:
+  port: 8401
