@@ -114,7 +114,7 @@ feign 也是基于 ribbon 的客户端负载均衡机制，和 RestTemplate 相�
 
 ### 疑问
 
-- redis 锁?
-- 分布式锁?
-- CAP? zookeeper 保证 CP? eureka 保证 ap;
+- redis 锁??
+- 分布式锁??
+- CAP?? zookeeper 保证 CP?? eureka 保证 ap;
 
