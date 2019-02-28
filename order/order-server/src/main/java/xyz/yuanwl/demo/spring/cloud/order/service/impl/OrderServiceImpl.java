@@ -36,8 +36,8 @@ public class OrderServiceImpl implements OrderService {
 	private OrderMasterRepository orderMasterRepository;
 
     @Autowired
-    private ProductClient productClient; /*可以在service层注入feign客户端对象使用！
-        注意：改造后这里引用的是product项目的ProductClient！要在启动类注明扫描包*/
+    private ProductClient productClient; /* 可以在 service 层注入 feign 客户端对象使用！
+        注意：改造后这里引用的是 product 项目的 ProductClient！要在启动类注明扫描包 */
 
 	@Override
 	@Transactional

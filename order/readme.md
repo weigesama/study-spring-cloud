@@ -80,3 +80,41 @@ feign 也是基于 ribbon 的客户端负载均衡机制，和 RestTemplate 相�
 3. order-client：对外暴露的接口；
 
 1被2、3依赖。
+
+
+## 在商品和订单服务中使用mq
+
+已实现的下单流程是:
+
+1. 参数检验
+2. 查询商品信息(调用商品服务)
+3. 计算总价(顺便生成订单详情)
+4. 扣库存(调用商品服务)
+5. 订单入库(生成订单主表)
+
+这5步是顺序调用, 即同步调用的过程. 如果只是下单-扣库存业务结合 mq 改造成异步调用, 思路如下:
+
+![7-6-在商品和订单服务中使用mq](../attachments/7-6-在商品和订单服务中使用mq.png)
+
+代码见:
+
+1. 减库存: xyz/yuanwl/demo/spring/cloud/product/service/impl/ProductServiceImpl.java#decreaseStock(List<DecreaseStockInput> decreaseStockInputList);
+2. 缓存库存: xyz/yuanwl/demo/spring/cloud/order/msg/ProductInfoReceiver.java#process(String msg);
+
+
+现在为进一步提高性能, 把上面2~4同步调用都改成异步调用, 那么需要做以下重构:
+
+### 1. 分库(未完待续)
+
+![7-9-分库](../attachments/7-9-分库.png)
+
+### 2. 代码调用流程改造(未完待续)
+
+![7-9-下单-减库异步调用优化](../attachments/7-9-下单-减库异步调用优化.png)
+
+### 疑问
+
+- redis 锁?
+- 分布式锁?
+- CAP? zookeeper 保证 CP? eureka 保证 ap;
+

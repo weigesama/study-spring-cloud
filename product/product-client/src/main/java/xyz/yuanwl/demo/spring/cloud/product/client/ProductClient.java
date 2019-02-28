@@ -16,12 +16,12 @@ import java.util.List;
 @FeignClient(name = "product")
 public interface ProductClient {
 
-    @GetMapping("/product/msg") //与微服务的接口路径一直
+    @GetMapping("msg") //与微服务的接口路径一直
     String productMsg(); //方法名随意
 
-    @PostMapping("/product/listForOrder")
+    @PostMapping("listForOrder")
     List<ProductInfoOutput> listForOrder(@RequestBody List<String> productIdList);
 
-    @PostMapping("/product/decreaseStock")
+    @PostMapping("decreaseStock")
     void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList);
 }

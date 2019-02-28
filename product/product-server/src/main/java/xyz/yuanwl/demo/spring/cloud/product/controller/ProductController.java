@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * 2017-12-09 21:13
  */
 @RestController
-@RequestMapping("/product")
+@RequestMapping
 public class ProductController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class ProductController {
      * 3. 查询类目
      * 4. 构造数据
      */
-    @GetMapping("/list")
+    @GetMapping("list")
     public ResultVO<ProductVO> list() {
         //1. 查询所有在架的商品
         List<ProductInfo> productInfoList = productService.findUpAll();
@@ -80,7 +80,7 @@ public class ProductController {
      * @param productIdList
      * @return
      */
-    @PostMapping("/listForOrder")
+    @PostMapping("listForOrder")
     public List<ProductInfoOutput> listForOrder(@RequestBody List<String> productIdList) {
 //        try {
 //            Thread.sleep(2000);
@@ -90,7 +90,7 @@ public class ProductController {
         return productService.findList(productIdList);
     }
 
-    @PostMapping("/decreaseStock")
+    @PostMapping("decreaseStock")
     public void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList) {
         productService.decreaseStock(decreaseStockInputList);
     }

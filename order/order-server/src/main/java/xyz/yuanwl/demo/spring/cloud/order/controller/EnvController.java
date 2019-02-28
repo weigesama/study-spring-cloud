@@ -13,7 +13,7 @@ import xyz.yuanwl.demo.spring.cloud.order.config.GirlConfig;
  * @date 2019-02-09 20:31
  */
 @RestController
-@RequestMapping("order/env")
+@RequestMapping("env")
 @RefreshScope //刷新范围：这个注解修饰的类里面的属性，将会被 bus 刷新
 public class EnvController {
 	@Value("${env}")

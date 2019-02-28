@@ -26,7 +26,7 @@ import java.util.Map;
  * 2017-12-10 16:36
  */
 @RestController
-@RequestMapping("/order")
+@RequestMapping
 @Slf4j
 public class OrderController {
 
@@ -40,7 +40,7 @@ public class OrderController {
      * 4. 扣库存(调用商品服务)
      * 5. 订单入库
      */
-    @PostMapping("/create")
+    @PostMapping("create")
     public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm,
                            BindingResult bindingResult) {
         //TODO 用 @ControllerAdvice 来改进

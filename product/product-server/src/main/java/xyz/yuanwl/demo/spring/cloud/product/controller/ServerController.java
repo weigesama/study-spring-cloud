@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ServerController {
 
-    @GetMapping("/product/msg")
+    @GetMapping("/msg")
     public String msg() {
         return "this is product0's msg";
     }
