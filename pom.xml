@@ -60,6 +60,7 @@
         <module>stream</module>
         <module>zuul</module>
         <module>user</module>
+        <module>hystrix</module>
     </modules>
 
 </project>
