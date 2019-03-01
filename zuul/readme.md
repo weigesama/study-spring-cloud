@@ -39,3 +39,13 @@
 3. 启动类上面加注解 @EnableZuulProxy //启用 zuul 网关代理;
 4. 启动项目即可使用网关;
 
+## 自定义过滤器
+
+1. 继承 ZuulFilter, 实现其方法;
+2. 过滤器上面加 @Component 注解;
+
+## 注意事项
+
+- zuul 在实际项目中, 不能直接访问 db, 也不要访问 user 服务;
+- 建议 zuul 通过 mq+redis 实现鉴权;
+- zuul 实现跨域, 首选在 zuul 加 CorsFilter, 或者在 nginx 解决跨域问题;
