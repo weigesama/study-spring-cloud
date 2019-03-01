@@ -58,8 +58,8 @@
         <module>order</module>
         <module>config</module>
         <module>stream</module>
-        <module>api-gateway</module>
         <module>zuul</module>
+        <module>user</module>
     </modules>
 
 </project>

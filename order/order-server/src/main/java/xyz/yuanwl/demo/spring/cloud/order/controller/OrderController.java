@@ -68,9 +68,9 @@ public class OrderController {
      * @param orderId
      * @return
      */
-//    @PostMapping("/finish")
-//    public ResultVO<OrderDTO> finish(@RequestParam("orderId") String orderId) {
-//        return ResultVOUtil.success(orderService.finish(orderId));
-//    }
+    @PostMapping("/finish")
+    public ResultVO<OrderDTO> finish(@RequestParam("orderId") String orderId) {
+        return ResultVOUtil.success(orderService.finish(orderId));
+    }
 
 }
