@@ -18,18 +18,19 @@ import org.springframework.web.client.RestTemplate;
 @DefaultProperties(defaultFallback = "defaultFallback")
 public class HystrixController2 {
 
-	@HystrixCommand(commandProperties = {
-			@HystrixProperty(name = "circuitBreaker.enabled", 
-					value = "true"), //启用熔断机制
-			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", 
-					value = "10"), //请求数达到后才计算是否应该熔断
-			@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",
-					value = "60"), //错误率超过就打开断路器
-			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",
-					value = "5000"), //打开断路器后进入休眠时间窗, 结束后半开断路器
-	})
+//	@HystrixCommand(commandProperties = {
+//			@HystrixProperty(name = "circuitBreaker.enabled",
+//					value = "true"), //启用熔断机制
+//			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",
+//					value = "10"), //请求数达到后才计算是否应该熔断
+//			@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",
+//					value = "60"), //错误率超过就打开断路器
+//			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",
+//					value = "5000"), //打开断路器后进入休眠时间窗, 结束后半开断路器
+//	})
+	@HystrixCommand
 	@GetMapping("product/list/2")
-	public String productList(@RequestParam("num") Integer num) throws Exception {
+	public String productList2(@RequestParam("num") Integer num) throws Exception {
 		if (num % 2 == 0) {
 			return "success";
 		}

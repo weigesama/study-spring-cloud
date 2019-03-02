@@ -18,13 +18,14 @@ import org.springframework.web.client.RestTemplate;
 public class HystrixController1 {
 
 //	@HystrixCommand//(fallbackMethod = "fallback") //调用指定降级方法
-	@HystrixCommand(commandProperties =
-		@HystrixProperty( //调用目标服务在3秒内有响应就不会触发降级
-				name = "execution.isolation.thread.timeoutInMilliseconds",
-				value = "3000")
-	)
+//	@HystrixCommand(commandProperties =
+//		@HystrixProperty( //调用目标服务在3秒内有响应就不会触发降级
+//				name = "execution.isolation.thread.timeoutInMilliseconds",
+//				value = "3000")
+//	)
+	@HystrixCommand
 	@GetMapping("product/list/1")
-	public String productList() throws Exception {
+	public String productList1() throws Exception {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//目标服务不可用或者超时, 或本方法内部产生异常, 都会调用降级方法返回提示信息
