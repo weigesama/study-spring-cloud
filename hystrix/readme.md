@@ -50,15 +50,52 @@
 
 步骤:
 
-1. 主调项目引入 feign 依赖, feign 依赖已经包含 hystrix 依赖;
-2. 主调项目配置:
-```yml
-feign:
-  hystrix:
-    enabled: true #默认就是 true
-```
-3. @FeignClient 设置属性 fallback 值为所修饰的接口的实现类: [ProductClient.java](../product/product-client/src/main/java/xyz/yuanwl/demo/spring/cloud/product/client/ProductClient.java);
-4. 在实现类的方法里写降级逻辑: 每个降级方法对应接口的同名方法;
-5. 在主调项目的启动类加上扫描, 扫描 @FeignClient 所在路径;
+1. @FeignClient 设置属性 fallback 值为所修饰的接口的实现类: [ProductClient.java](../product/product-client/src/main/java/xyz/yuanwl/demo/spring/cloud/product/client/ProductClient.java). 在实现类的方法里写降级逻辑: 每个降级方法对应接口的同名方法;
+1. 主调项目引入 feign 依赖(feign 依赖已经包含 hystrix 依赖);
+1. 主调项目配置:
+    ```yml
+    feign:
+      hystrix:
+        enabled: true
+    ```
+1. 在主调项目的启动类加上 @ComponentScan(basePackages = "xyz.yuanwl.demo.spring.cloud"), 扫描本项目的类和第1步的实现类;
+1. 在主调项目的启动类加上 @EnableFeignClients 扫描 @FeignClient 所在路径--这一步不要漏了! 否则 FeignClient 不起作用, 只是普通的类;
 
-问题:
+
+**注意: 如果被调服务超时, 可能会导致 hystrix 超时(默认1秒), 从而触发降级.为了避免这个问题, 可参考下面两个帖子配置项目:**
+
+- 推荐: https://blog.csdn.net/east123321/article/details/82385816
+- https://blog.csdn.net/mxmxz/article/details/84633098
+
+
+## hystrix-dashboard
+
+1. 主调项目引入依赖:
+    ```xml
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+    </dependency>
+    <!--使用 hystrix-dashboard 必须要引入这个依赖, 如果已经引入就无需重复引入-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    ```
+2. 配置文件:
+    ```yml
+    #暴露所有监控端点, 包括 hystrix-dashboard
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "*"
+          cors:
+            allowed-origins: "*"
+            allowed-methods: "*"
+    ```
+3. 启动类加注解: @EnableHystrixDashboard;
+4. 启动项目;
+5. 在 dashboard 页面输入: http://localhost:8080/actuator/hystrix.stream (注意这里不是 hystrix.stream，springboot2.0 默认是 actuator/hystrix.stream), 点 monitor stream 按钮打开监控页面, 然后开始调用接口观看监控情况;
+
+** 注: 这个东西等以后要用时再详细了解.

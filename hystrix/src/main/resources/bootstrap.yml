@@ -16,12 +16,14 @@ eureka:
 hystrix:
   command:
     default: #对应 @DefaultProperties
-      #配置文件不能配这个, 不起作用, 只能配 @HystrixProperty 的值
-#      defaultFallback: defaultFallback
       execution:
+        timeout:
+          enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 10000
+            timeoutInMilliseconds: 9000 #配置全局超时10秒
+      #配置文件不能配这个, 不起作用, 只能配 @HystrixProperty 的值
+      #defaultFallback: defaultFallback
     productList1: #对应 @HystrixCommand 修饰的方法名, 或者 commandKey 值
       execution:
         isolation:
@@ -34,19 +36,32 @@ hystrix:
         circuitBreaker:
           errorThresholdPercentage: 60
           sleepWindowInMilliseconds: 5000
-    "ProductClient#productMsg()":
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
+#    "ProductClient#productMsg()": #单独配置这个 feign 的方法超时为15秒
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 15000
 
 #feign 结合 hystrix 使用, 首先要开启下面这个开关
 feign:
   hystrix:
-    enabled: true #默认就是 true, 可以不手动配置
+    enabled: true
 
-#然后还要配置超时时间, 不然 feign 基本都是调用降级逻辑(不起作用??)
-#参考: https://blog.csdn.net/mxmxz/article/details/84633098
+#ribbon的超时时间
 ribbon:
-  ReadTimeout: 5000
-  ConnectTimeout: 5000
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+  MaxAutoRetries: 1 #同一台实例最大重试次数,不包括首次调用
+  MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
+  OkToRetryOnAllOperations: false  #是否所有操作都重试
+
+
+#暴露所有监控端点, 包括 hystrix-dashboard
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"

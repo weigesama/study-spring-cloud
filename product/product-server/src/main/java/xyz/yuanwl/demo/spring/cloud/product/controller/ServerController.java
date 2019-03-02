@@ -16,6 +16,11 @@ public class ServerController {
     @GetMapping("/msg")
     public String msg(HttpServletRequest request) {
         System.err.println(request.getCookies());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "this is product0's msg";
     }
 }
