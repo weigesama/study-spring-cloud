@@ -18,6 +18,7 @@
 
 代码请看: [HystrixController1.java](src/main/java/xyz/yuanwl/demo/spring/cloud/hystrix/controller/HystrixController1.java)
 
+
 ## 熔断
 
 ### 依赖隔离
@@ -43,3 +44,21 @@
 4. 休眠时间结束后, 断路器进入半开状态, 如果有请求过来, 断路器就让请求到达主调用逻辑, 如果能调用, 就关闭断路器, 进入新一轮的监控计数; 否则, 断路器继续打开, 重新进入休眠时间窗口, 重新计时;
 
 代码请看: [HystrixController2.java](src/main/java/xyz/yuanwl/demo/spring/cloud/hystrix/controller/HystrixController2.java)
+
+
+## feign 结合 hystrix 使用
+
+步骤:
+
+1. 主调项目引入 feign 依赖, feign 依赖已经包含 hystrix 依赖;
+2. 主调项目配置:
+```yml
+feign:
+  hystrix:
+    enabled: true #默认就是 true
+```
+3. @FeignClient 设置属性 fallback 值为所修饰的接口的实现类: [ProductClient.java](../product/product-client/src/main/java/xyz/yuanwl/demo/spring/cloud/product/client/ProductClient.java);
+4. 在实现类的方法里写降级逻辑: 每个降级方法对应接口的同名方法;
+5. 在主调项目的启动类加上扫描, 扫描 @FeignClient 所在路径;
+
+问题:

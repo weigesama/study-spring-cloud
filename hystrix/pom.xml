@@ -25,6 +25,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>xyz.yuanwl.demo.spring.cloud</groupId>
+            <artifactId>product-client</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
