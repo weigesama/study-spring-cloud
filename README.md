@@ -155,11 +155,12 @@ spring-cloud 是基于 spring-boot 实现的一整套微服务框架。他提供
 
 要记住微服务架构设计不是一步到位的，因为不是谁都能保证一次就设计准确。要渐进式的演变，先把迫切要拆分的拆出来，部署到生产环境，后面再拆分其他模块——微服务就是要低成本、低风险、渐进式的演进。
 
+
 ## 学习笔记结构
 
 主要分以下几大部分：
 
-- [eureka](eureka)：
+### [eureka](eureka)：
 
 
 源码获取：要获取特定章节的源码，可以用以下命令
@@ -168,3 +169,52 @@ spring-cloud 是基于 spring-boot 实现的一整套微服务框架。他提供
 # 后面的 4-12 表示第 4-12 和之前的源码打成的tag，前面的 4-12 表示把远端代码拉到本地打成 4-12 的tag
 git checkout -b 4-12 4-12
 ```
+
+### sleuth & zipkin
+
+sleuth 也就是链路监控:
+
+![11-1-sleuth&zipkin_1](attachments/11-1-sleuth%26zipkin_1.png)
+
+现今业界分布式服务跟踪的理论基础主要来自于 Google 的一篇论文《Dapper, a Large-Scale Distributed Systems Tracing Infrastructure》，使用最为广泛的开源实现是 Twitter 的 Zipkin.
+
+参考资料: https://www.cnblogs.com/xiangkejin/archive/2018/05/16/9046238.html
+
+使用步骤:
+
+1. 引入依赖:
+    ```xml
+    <!--<dependency>-->
+        <!--<groupId>org.springframework.cloud</groupId>-->
+        <!--<artifactId>spring-cloud-starter-sleuth</artifactId>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+        <!--<groupId>org.springframework.cloud</groupId>-->
+        <!--<artifactId>spring-cloud-sleuth-zipkin</artifactId>-->
+    <!--</dependency>-->
+
+    <!--全部服务开启链路监控. 这个依赖包含了上面两个依赖-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-zipkin</artifactId>
+    </dependency>
+    ```
+2. 配置:
+    ```yml
+    spring:
+      sleuth:
+        sampler:
+          probability: 1 #把多少比例的日志发送到 zipkin, 开发环境填1(100%)
+      zipkin:
+        sender:
+          type: web #发送日志的类型
+        base-url: http://localhost:9411 #连接 zipkin
+    ```
+3. 安装 zipkin--推荐 docker 安装;
+4. 启动系统, 执行业务, 进入 zipkin 查看监控;
+
+几个概念:
+
+- traceId: 标识一个完整的请求过程;
+- spanId: 标识一个服务组件的开始,具体过程以及结束;
+- parentId: 请求链中某个 span 的上一级 span, 用来把 span 串联起来;

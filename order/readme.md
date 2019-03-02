@@ -2,7 +2,7 @@
 
 # RestTemplate 调用微服务的三种方式
 
-看：xyz.yuanwl.demo.spring.cloud.order.controller.ClientController
+看：[ClientController.java](order-server/src/main/java/xyz/yuanwl/demo/spring/cloud/order/controller/ClientController.java)
 
 
 # 客户端负载均衡器 ribbon
