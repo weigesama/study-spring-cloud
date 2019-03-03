@@ -115,4 +115,4 @@
 **注意：过程中碰到以下两个问题**
 
 1. 手动发送 post 请求到 /actuator/bus-refresh 可以刷新配置，在 webhooks 上配置这个请求就报错：用下面的方法（https://blog.csdn.net/m0_37556444/article/details/82812816``）；
-1. 默认情况下没有 /monitor 接口，访问报404：要在pom里加入依赖 spring-cloud-config-monitor ——虽然没报错了，但是客户端没有自动刷新配置？？
+1. 默认情况下没有 /monitor 接口，访问报404：要在pom里加入依赖 spring-cloud-config-monitor ——虽然没报错了，但是客户端没有自动刷新配置??
